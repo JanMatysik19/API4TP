@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.API4TP" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/light</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <item name="colorPrimary">@color/light</item>
+        <item name="colorPrimaryVariant">@color/light</item>
+        <item name="colorOnPrimary">@color/dark</item>
+    </style>
+
+    <style name="Theme.API4TP" parent="Base.Theme.API4TP" />
+</resources>
