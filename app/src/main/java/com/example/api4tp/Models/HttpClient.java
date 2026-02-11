@@ -1,10 +1,8 @@
-package com.example.api4tp;
+package com.example.api4tp.Models;
 
 import androidx.annotation.NonNull;
 
-import com.example.api4tp.Models.ApiResponse;
-import com.example.api4tp.Models.MapService;
-import com.example.api4tp.Models.Place;
+import com.example.api4tp.BuildConfig;
 
 import java.util.List;
 import java.util.function.Consumer;

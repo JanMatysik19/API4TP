@@ -1,4 +1,4 @@
-package com.example.api4tp;
+package com.example.api4tp.Models;
 
 import android.Manifest;
 import android.animation.AnimatorInflater;
@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.api4tp.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

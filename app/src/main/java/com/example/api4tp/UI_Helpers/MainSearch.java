@@ -1,4 +1,4 @@
-package com.example.api4tp;
+package com.example.api4tp.UI_Helpers;
 
 import android.util.DisplayMetrics;
 import android.util.TypedValue;

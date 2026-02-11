@@ -16,11 +16,11 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
-import com.example.api4tp.HttpClient;
-import com.example.api4tp.GeoClient;
+import com.example.api4tp.Models.HttpClient;
+import com.example.api4tp.Models.GeoClient;
 import com.example.api4tp.Controllers.MainController;
-import com.example.api4tp.MainMap;
-import com.example.api4tp.MainSearch;
+import com.example.api4tp.UI_Helpers.MainMap;
+import com.example.api4tp.UI_Helpers.MainSearch;
 import com.example.api4tp.R;
 
 import org.osmdroid.config.Configuration;

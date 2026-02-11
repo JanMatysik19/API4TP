@@ -4,10 +4,10 @@ import android.Manifest;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.api4tp.HttpClient;
-import com.example.api4tp.GeoClient;
-import com.example.api4tp.MainMap;
-import com.example.api4tp.MainSearch;
+import com.example.api4tp.Models.HttpClient;
+import com.example.api4tp.Models.GeoClient;
+import com.example.api4tp.UI_Helpers.MainMap;
+import com.example.api4tp.UI_Helpers.MainSearch;
 
 import org.osmdroid.util.GeoPoint;
 
