@@ -3,4 +3,10 @@
     <string name="pupil_info_label">Informacje o uczniu</string>
     <string name="back_map_label">Wróć do mapy</string>
     <string name="pupil_name">Jan Matysik</string>
+
+    <string name="pupil_class_label">Klasa:</string>
+    <string name="pupil_class">4TP</string>
+
+    <string name="pupil_register_number_label">Numer w dzienniku:</string>
+    <string name="pupil_register_number">19/10</string>
 </resources>

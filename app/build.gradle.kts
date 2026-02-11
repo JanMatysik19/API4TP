@@ -1,6 +1,5 @@
 // app/build.gradle.kts
 import java.util.Properties
-import com.android.build.api.dsl.ApplicationExtension
 
 fun loadLocalProperties(): Properties {
     val properties = Properties()
@@ -71,5 +70,5 @@ dependencies {
     implementation("org.osmdroid:osmdroid-android:6.1.20")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

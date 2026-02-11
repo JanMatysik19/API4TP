@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pi_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -72,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pi_topbarCl">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/pi_avatarIv"
             android:layout_width="340dp"
             android:layout_height="290dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +80,7 @@
             app:srcCompat="@drawable/person_avatar" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/pi_pupilNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-40dp"
@@ -93,7 +92,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/pi_avatarIv" />
 
         <TableLayout
             android:layout_width="217dp"
@@ -101,7 +100,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/pi_pupilNameTv">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -110,21 +109,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/pi_classLabelTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato"
-                    android:text="Klasa:"
+                    android:text="@string/pupil_class_label"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/pi_classTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/lato"
-                    android:text="4TP"
+                    android:text="@string/pupil_class"
                     android:textSize="17sp" />
             </TableRow>
 
@@ -135,21 +134,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/pi_registerNumberLabelTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato"
-                    android:text="Numer w dzienniku:"
+                    android:text="@string/pupil_register_number_label"
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/pi_registerNumberTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/lato"
-                    android:text="19/10"
+                    android:text="@string/pupil_register_number"
                     android:textSize="17sp" />
             </TableRow>
 

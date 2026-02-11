@@ -1,6 +1,5 @@
 package com.example.api4tp.Activiities;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -29,11 +28,9 @@ import org.osmdroid.views.MapView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityResultLauncher<String[]> permissionLauncher;
-    private Supplier<String[]> permissionSupplier;
     private MapView mainMv;
 
     @Override
@@ -42,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         permissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(),
-                result -> {
-                    var fine = result.get(Manifest.permission.ACCESS_FINE_LOCATION);
-                    var coarse = result.get(Manifest.permission.ACCESS_COARSE_LOCATION);
-                }
+                result -> { }
         );
 
         var ctx = getApplicationContext();
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         final var mainSearch = new MainSearch(main, searchCv, searchSv, getResources().getDisplayMetrics());
         final var client = new HttpClient();
         final var locater = new GeoClient(this, locateCv, locateIv);
-        final var mainController = new MainController(this::requirePermissions, this::displayError, zseIv, mainSearch, mainMap, client, locater);
+        new MainController(this::requirePermissions, this::displayError, zseIv, mainSearch, mainMap, client, locater);
 
         mainMap.setMapLocation(MainMap.ZSE_LOCATION);
         mainMap.setLocation(MainMap.ZSE_LOCATION);

@@ -4,7 +4,6 @@ public class Place {
     private double lon;
     private double lat;
     private String name;
-    private String label;
     private double distance;
 
     public double getLon() {
@@ -29,14 +28,6 @@ public class Place {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public double getDistance() {

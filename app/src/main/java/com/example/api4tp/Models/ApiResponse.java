@@ -9,13 +9,8 @@ public class ApiResponse {
     // features[n].geometry.coordinates[0] - lon
     // features[n].geometry.coordinates[1] - lat
     // features[n].properties.name - name
-    // features[n].properties.label - label
     @SerializedName("features")
     private List<Feature> features;
-
-    public List<Feature> getFeatures() {
-        return features;
-    }
 
     public List<Place> getPlaces() {
         final List<Place> places = new ArrayList<>();
@@ -24,7 +19,6 @@ public class ApiResponse {
             place.setLon(feature.geometry.coordinates.get(0));
             place.setLat(feature.geometry.coordinates.get(1));
             place.setName(feature.properties.name);
-            place.setLabel(feature.properties.label);
             place.setDistance(feature.properties.distance);
             places.add(place);
         }
@@ -47,8 +41,6 @@ public class ApiResponse {
     public static class Properties {
         @SerializedName("name")
         public String name;
-        @SerializedName("label")
-        public String label;
         @SerializedName("distance")
         public double distance;
     }

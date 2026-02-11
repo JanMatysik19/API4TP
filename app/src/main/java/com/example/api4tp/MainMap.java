@@ -2,7 +2,6 @@ package com.example.api4tp;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -13,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
@@ -47,16 +47,16 @@ public class MainMap {
         mainMv.setHorizontalMapRepetitionEnabled(false);
         mainMv.setVerticalMapRepetitionEnabled(false);
 
-        mainMv.setBuiltInZoomControls(false);
+        mainMv.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
         mainMv.setMultiTouchControls(true);
         mainMv.setMaxZoomLevel(MAX_ZOOM);
         mainMv.setMinZoomLevel(MIN_ZOOM);
 
         mainMvController.setZoom(INIT_ZOOM);
 
-        setCurrentMarker(ZSE_LOCATION);
+        setCurrentMarker();
         setCurrentMarkerDisplay(false);
-        setSchoolMarker(ZSE_LOCATION, SCHOOL_LOCATION_TEXT);
+        setSchoolMarker();
         invalidate();
     }
 
@@ -66,22 +66,22 @@ public class MainMap {
 
     public void setMapLocation(GeoPoint location) {
         mainMvController.setCenter(location);
-        limitToRadius(location, MAX_RADIUS_KM);
+        limitToRadius(location);
     }
 
     public void setLocation(GeoPoint location) {
         mainMvController.setCenter(location);
     }
 
-    private void setSchoolMarker(GeoPoint location, String name) {
-        final var text = new CustomText(name, location, 35, true, OverlayType.CONSTANT_TEXT);
+    private void setSchoolMarker() {
+        final var text = new CustomText(MainMap.SCHOOL_LOCATION_TEXT, MainMap.ZSE_LOCATION, 35, true, OverlayType.CONSTANT_TEXT);
         mainMv.getOverlays().add(text);
-        final var marker = new CustomMarker(location, SCHOOL_LOCATION_MARK, Marker.ANCHOR_BOTTOM, OverlayType.CONSTANT_MARKER);
+        final var marker = new CustomMarker(MainMap.ZSE_LOCATION, SCHOOL_LOCATION_MARK, Marker.ANCHOR_BOTTOM, OverlayType.CONSTANT_MARKER);
         mainMv.getOverlays().add(marker);
     }
 
-    private void setCurrentMarker(GeoPoint location) {
-        currentLocationMarker = new CustomMarker(location, CURRENT_LOCATION_MARK, Marker.ANCHOR_BOTTOM, OverlayType.CURRENT_MARKER);
+    private void setCurrentMarker() {
+        currentLocationMarker = new CustomMarker(MainMap.ZSE_LOCATION, CURRENT_LOCATION_MARK, Marker.ANCHOR_BOTTOM, OverlayType.CURRENT_MARKER);
         mainMv.getOverlays().add(currentLocationMarker);
     }
 
@@ -119,14 +119,14 @@ public class MainMap {
         mainMv.postInvalidate();
     }
 
-    private void limitToRadius(GeoPoint point, double radius) {
+    private void limitToRadius(GeoPoint point) {
         var lat = point.getLatitude();
         var lon = point.getLongitude();
 
         final double latDeg = 40075.00 / 360.00; // Obwód Ziemii / 360 stopni  [km/deg]
-        final double rLat = radius / latDeg;
+        final double rLat = (double) MainMap.MAX_RADIUS_KM / latDeg;
         final double lonDeg = latDeg * Math.cos(Math.toRadians(lat));
-        final double rLon = radius / lonDeg;
+        final double rLon = (double) MainMap.MAX_RADIUS_KM / lonDeg;
 
         final double n = lat + rLat;
         final double s = lat - rLat;
@@ -170,7 +170,7 @@ public class MainMap {
             paint.setTextSize(size);
             paint.setFakeBoldText(bold);
             paint.setTextAlign(Paint.Align.CENTER);
-            pCanvas.drawText(text, point.x, point.y + size/2, paint);
+            pCanvas.drawText(text, point.x, point.y + (float) size /2, paint);
         }
     }
 

@@ -8,11 +8,9 @@ import com.example.api4tp.HttpClient;
 import com.example.api4tp.GeoClient;
 import com.example.api4tp.MainMap;
 import com.example.api4tp.MainSearch;
-import com.example.api4tp.Models.Place;
 
 import org.osmdroid.util.GeoPoint;
 
-import java.util.Comparator;
 import java.util.function.Consumer;
 
 public class MainController {
@@ -56,12 +54,7 @@ public class MainController {
             mainMap.clearSearchMarkers();
             mainSearch.clearFocus();
 
-            places.sort(new Comparator<Place>() {
-                @Override
-                public int compare(Place o1, Place o2) {
-                    return (int) (o1.getDistance() - o2.getDistance());
-                }
-            });
+            places.sort((o1, o2) -> (int) (o1.getDistance() - o2.getDistance()));
             for(final var place : places) mainMap.setSearchMarker(new GeoPoint(place.getLat(), place.getLon()), place.getName());
             mainMap.invalidate();
 
