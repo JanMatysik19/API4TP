@@ -58,7 +58,6 @@ public class GeoClient {
         callback = new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
-                System.out.println("LOCATION FETCHED");
                 if(!working) return;
 
                 final var loc = locationResult.getLastLocation();

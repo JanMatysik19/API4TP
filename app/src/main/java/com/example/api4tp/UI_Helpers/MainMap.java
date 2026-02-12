@@ -1,13 +1,10 @@
 package com.example.api4tp.UI_Helpers;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
-
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
 import com.example.api4tp.R;
 
@@ -19,6 +16,8 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
 
+import java.util.function.Function;
+
 public class MainMap {
     public static final int MAX_RADIUS_KM = 15;
     public static final double MAX_ZOOM = 22;
@@ -27,7 +26,6 @@ public class MainMap {
     public static final GeoPoint ZSE_LOCATION = new GeoPoint(52.733646, 15.238512);
     public static final String SCHOOL_LOCATION_TEXT = "Tu praca jest oceniana";
 
-    private final Context ctx;
     private final MapView mainMv;
     private final IMapController mainMvController;
     private CustomMarker currentLocationMarker;
@@ -36,14 +34,13 @@ public class MainMap {
     private final Drawable SCHOOL_LOCATION_MARK;
     private final Drawable CURRENT_LOCATION_MARK;
 
-    public MainMap(Context ctx, MapView mainMv) {
-        this.ctx = ctx;
+    public MainMap(Function<Integer, Drawable> drawableResourceSupplier, MapView mainMv) {
         this.mainMv = mainMv;
         this.mainMvController = mainMv.getController();
 
-        SEARCH_LOCATION_MARK = AppCompatResources.getDrawable(ctx, R.drawable.location_mark);
-        SCHOOL_LOCATION_MARK = AppCompatResources.getDrawable(ctx, R.drawable.school);
-        CURRENT_LOCATION_MARK = AppCompatResources.getDrawable(ctx, R.drawable.person_mark);
+        SEARCH_LOCATION_MARK = drawableResourceSupplier.apply(R.drawable.location_mark);
+        SCHOOL_LOCATION_MARK = drawableResourceSupplier.apply(R.drawable.school);
+        CURRENT_LOCATION_MARK = drawableResourceSupplier.apply(R.drawable.person_mark);
 
         mainMv.setTileSource(TileSourceFactory.MAPNIK);
         mainMv.setHorizontalMapRepetitionEnabled(false);
@@ -56,9 +53,9 @@ public class MainMap {
 
         mainMvController.setZoom(INIT_ZOOM);
 
+        setSchoolMarker();
         setCurrentMarker();
         setCurrentMarkerDisplay(false);
-        setSchoolMarker();
         invalidate();
     }
 
@@ -85,6 +82,11 @@ public class MainMap {
     private void setCurrentMarker() {
         currentLocationMarker = new CustomMarker(MainMap.ZSE_LOCATION, CURRENT_LOCATION_MARK, Marker.ANCHOR_BOTTOM, OverlayType.CURRENT_MARKER);
         mainMv.getOverlays().add(currentLocationMarker);
+    }
+
+    public void elevateCurrentMarker() {
+        if(currentLocationMarker != null) mainMv.getOverlays().remove(currentLocationMarker);
+        setCurrentMarker();
     }
 
     public void setSearchMarker(GeoPoint location, String name) {
@@ -168,7 +170,7 @@ public class MainMap {
             p.toPixels(this.point, point);
 
             var paint = new Paint();
-            paint.setColor(ContextCompat.getColor(ctx, R.color.dark));
+            paint.setColor(Color.BLACK);
             paint.setTextSize(size);
             paint.setFakeBoldText(bold);
             paint.setTextAlign(Paint.Align.CENTER);

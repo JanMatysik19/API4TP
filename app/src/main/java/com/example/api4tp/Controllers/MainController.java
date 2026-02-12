@@ -61,6 +61,7 @@ public class MainController {
             final var nearestSearchPlace = places.get(0);
             mainMap.setLocation(new GeoPoint(nearestSearchPlace.getLat(), nearestSearchPlace.getLon()));
             mainMap.zoom();
+            mainMap.elevateCurrentMarker();
         });
 
         return true;
